@@ -8,7 +8,9 @@ interface StripePaymentButtonProps {
 }
 
 // Initialize Stripe
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
+const stripePromise = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  ? loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
+  : Promise.resolve(null)
 
 export const StripePaymentButton = ({
   paymentSession,
